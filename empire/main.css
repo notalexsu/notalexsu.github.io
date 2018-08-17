@@ -1,0 +1,61 @@
+body::-webkit-scrollbar {
+	width: 0.2em;
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: grey;
+  outline: 1px solid grey;
+  height: 1.5em;
+}
+body {
+  text-align: center;
+  font-size: 2em;
+  font-family: PingFang TC;
+  word-wrap: break-word;
+}
+input {
+  font-size: 0.5em;
+  text-align: center;
+}
+@media(max-width: 980px) {
+  body {
+	font-size: 7em;
+	margin-left: 0.3em
+  }
+  button {
+	font-size: 0.5em;
+	height: 2em;
+	width: 10em;
+  }
+}
+.prev {
+  float: left;
+}
+.next {
+  float: right;
+}
+.out {
+  width: 100%;
+}
+.pages {
+  text-align: center;
+}
+.story {
+  text-align: left;
+}
+a:link {
+  color: blue;
+  text-decoration: none;
+}
+a:visited {
+  color: blue;
+  text-decoration: none;
+}
+a:active {
+  color: blue;
+  text-decoration: underline;
+}
