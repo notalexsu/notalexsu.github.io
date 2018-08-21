@@ -29,6 +29,7 @@ input {
 	cursor:pointer;
 	background-size: 100%;
 	border: none;
+	outline: none;
 }
 @media(max-width: 980px) {
   body {
