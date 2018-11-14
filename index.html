@@ -11,10 +11,58 @@
 		  color: blue;
 		  text-decoration: none;
 		}
+		@media(max-width: 980px) {
+		  body {
+		    font-size: 2em;
+		    margin-left: 0.3em
+		  }
+		}
 	</style>
 </head>
-<a href="./empire/1.html">希靈帝國</a><br><br>
-<!-- <a href="./history/1.html">歷史的塵埃</a><br><br>
-<a href="./killer/1.html">隱殺</a><br><br>
-<a href="./steel/1.html">鋼鐵王座</a><br><br> -->
-<a href="./op1.html">원피스</a>
+<body>
+	<br><br><br><br>
+	<ul>
+		<li><a href="#" onclick="getBook(1);return false;">希靈帝國</a></li><br><br><br><br>
+		<li><a href="#" onclick="getBook(2);return false;">田園大唐</a></li>
+	</ul>
+</body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+<script type="text/javascript">
+	function getBook(book) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": false,
+		"user": book
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link;
+			if (book == 1) {
+				link = "./empire/" + page + ".html";
+			}
+			else {
+				link = "./tang/" + page + ".html";
+			}
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+</script>

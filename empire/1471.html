@@ -13,11 +13,15 @@ function bookmark(setOrGet) {
 	AWS.config.update({region: "us-east-1"});
 	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
 	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 1
+	};
 	var pullParams = {
 		FunctionName : "bookmark",
 		InvocationType : "RequestResponse",
 		LogType : "None",
-		Payload : setOrGet.toString()
+		Payload : JSON.stringify(payload)
 	};
 	var pullResults;
 	lambda.invoke(pullParams, function(error, data) {
