@@ -26,8 +26,10 @@ input {
 	height: 50px;
 	width: 50px;
 	background: url(../bookmark.jpg) no-repeat;
-    cursor:pointer;
-    background-size: 100%;
+	cursor:pointer;
+	background-size: 100%;
+	border: none;
+	outline: none;
 }
 @media(max-width: 980px) {
   body {
