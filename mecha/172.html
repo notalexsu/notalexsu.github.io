@@ -1,0 +1,50 @@
+<head><title>師士傳說 第172頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="171.html">Previous</a></div><div class="next"><a href="173.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story"><br>                                                    「在下長孫離，拜見各位前輩！」長孫離長著一張國宇臉，濃眉大眼，相貌堂堂，一米八的身材健碩有力，一看便是一位性情堅韌之輩。雙手佈滿老繭，舉止有度。<br><br>    「哦，你有什麼事？」果老大有些奇怪地看著這位差不多有三十歲左右的大漢。<br><br>    長孫離神色恭謹，微微一躬身，道：「長孫離自幼修習格鬥，自認頗為刻苦，奈何良師難覓，至今一無所成。今見眾位前輩身手之高，已入界者之境，已經是我等夢寐之境。離乞願各位前輩，允許離追隨左右。不敢奢望錄入門牆，但求打雜諸事，離亦心滿意足。」長孫離神色懇切，語氣堅定。<br><br>    果老大有些怔然，拜師？不過對長孫離這種心情，他倒是可以理解。在這個社會上，像這樣的人有許多，果老大以前的經歷其實就和長孫離遭遇頗為相似。只不過他選擇的是師士這條路。他從小也是刻苦無比，但是沒有明師指點，水平也只不過剛剛湊和。<br><br>    有一人帶頭，自然效仿者群起。人群紛紛市人在嚷：「我也想拜師，我也想拜師！」<br><br>    「是啊，是啊，要是能拜到界者為師，那以後的前途可就光明了。」<br><br>    「收我吧，收我吧，我基礎好，能吃苦……」<br><br>    人群的熱情立即被點燃了，紛紛向前湧，果老大頓時成了他們眼中的香餑餑。<br><br>    果老大立即傻眼了，他怎麼也沒想到居然會有人來拜師！至於長孫離，同樣也傻眼了，他也想不到自己的舉動居然會導致這樣的情況出現。<br><br>    果老大的臉變色了。旅店裡的葉重等人也紛紛起身戒備，這樣的情況無疑是極度危險，如果有人在其中暗中唆使，只怕場面立即失控。葉重等人再厲害，在這樣的人潮面前根本就起不到任何作用。<br><br>    果老大哪裡還敢停留，連忙向旅店裡釬奔。開玩笑，看眼前的架勢，自己倘若還呆在剛才那地方，保不齊被一擁而上的人群撕成碎片。<br><br>    葉重的眼神是流露出幾分凝重。桑鐵連忙跑出去把果老大接了過來。果老大剛進旅店，他手上的通訊器便響了。果老大看了一眼，剛才的驚慌立即不翼而飛，而是跑到葉重面前，興奮道：「先生，我們的東西已經賣出去了。」<br><br>    葉重心下一喜，他之所以到現在現沒有離開月芒星，就是因為錢還沒有到卡上。而就在剛才，拍賣流金的點數已經全部到了卡上。<br><br>    桑凡此時也接口道：「先生，阿火他們已經到了城外，做好準備了。」<br><br>    葉重立即吩咐桑鐵：「把海連倆人叫來，我們準備出城。」說完，又側過臉來，對桑凡道：「讓桑火他們準備按應我們。」<br><br>    門外的人群雖然群情激昂，但是還是沒有人敢衝進旅店，界者這個名頭到底還是蠻嚇唬人的。<br><br>    葉重等人整裝待發，至於那個長孫離，還有這些拜師的人，葉重可沒興趣理會。長孫離也早就被人群所淹沒。而格瑞塔這幾個人，眼下也顧不上了。</div><br><br><div class="out"><div class="prev"><a href="./171.html">Previous</a></div><div class="next"><a href="./173.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 4
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

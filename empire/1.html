@@ -1,50 +1,0 @@
-<head><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="next"><a href="2.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story"><br>                                                                                                    【封面圖片】：  <br><br>【小說書名】：   希靈帝國    <br><br>【小說作者】：   遠瞳<br><br>【小說簡介】： 不是帝國爭霸，不是異界風雲，更不是升級練功，其實，這是一本非常嚴肅正經認真的硬科幻救世文——你就當真的聽。<br><br>    好吧，其實這就是一群沒溜的領袖和一個坑爹的元首歡樂無節操的救世日常而已。<br><br>    混吃等死的偽宅搖身一變成帝國元首，擁有奶爸光環的大叔領養蘿莉無數，這就是某宅在獲得一個從天而降的蹭飯兵團之後所發生的爆笑故事，再次鄭重提示：這是一本非常嚴肅正經認真的科幻……<br><br>【評】： 初期---糧草  中後期開始---仙草<br><br>這本真的是近年最佳科幻 而且故事裡少不了吐槽和歡樂 <br><br><br>ps:編輯好了,後面追加了番外跟2.0(2014年遠瞳重新編輯了前45集) 本帖最後由 MK2LO 於 2015-10-27 17:21 編輯 <br><br></div><br><br><div class="out"><div class="next"><a href="./2.html">Next</a></div></div></body>
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
-function myFunction() {
-	var x = document.getElementById("pages");
-	if (x.style.display === "block") {
-		x.style.display = "none";
-	} else {
-		x.style.display = "block";
-	}
-}
-
-function bookmark(setOrGet) {
-	AWS.config.update({region: "us-east-1"});
-	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
-	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
-	var payload = {
-		"setOrGet": setOrGet,
-		"user": 1
-	};
-	var pullParams = {
-		FunctionName : "bookmark",
-		InvocationType : "RequestResponse",
-		LogType : "None",
-		Payload : JSON.stringify(payload)
-	};
-	var pullResults;
-	lambda.invoke(pullParams, function(error, data) {
-		if (error) {
-			prompt(error);
-		} else {
-			pullResults = JSON.parse(data.Payload);
-		}
-		if (pullResults) {
-			var page = pullResults.page;
-			var link = "./" + page + ".html";
-			window.location.replace(link);
-		}
-		else {
-			alert("Bookmark set!");
-		}
-	});
-}
-
-// document.getElementById("button").onclick = function showPageNumber() {
-// 	var page = document.getElementById("inputPage").value;
-// 	if (!isNaN(page)) {
-// 		window.location = "./" + page + ".html";
-// 	}
-// }
-</script>

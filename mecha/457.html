@@ -1,0 +1,50 @@
+<head><title>師士傳說 第457頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="456.html">Previous</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story"><br>                                                    關於結尾的解釋以及完本後感<br><br><br>　　呵，關於這個結尾，很多朋友都不接受。這真是個題啊！<br><br>　　這個結尾是早就想好的，唔，大概是去年，而並非匆忙間結尾的。<br><br>　　以前看書的時候，看到好看的書總希望故事不要結束，看到作者不出人意料的結尾時，其實是蠻失望的。<br><br>　　過程很波瀾，結尾很平淡，我看來，是很正常的，這也是我自己預想好的結尾。<br><br>　　有些讀者覺得很多問題沒有交待清楚。首先，我認為，一本書不可能把書中涉及的所有問題全都交待清楚，把主要的問題交待清楚就夠了。<br><br>　　而且在我看來，這樣的結尾很有遐想的空間。八趾沒有找到，世界各地還有許多零星的赤尾獸，並沒有太平下來，戰鬥隨時有可能發生，這又是一個充滿了故事的時代。不是蠻有意思嗎？<br><br>　　起碼這個故事在大家心中也可以延續下去。<br><br>　　呼，終於完本了！真是不容易啊！呵呵，大家也不容易！寫了兩年多，說不累是假的。<br><br>　　鬆了一口氣，輕鬆了許多！不過馬上就又要投入一場新戰鬥了……PS：新書七月一號發！</div><br><br><div class="out"><div class="prev"><a href="./456.html">Previous</a></div><div class="next">The End</div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 4
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>
