@@ -1,0 +1,50 @@
+<head><title>間客 第119頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="118.html">Previous</a></div><div class="next"><a href="120.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第五十七章 破牆而出的黑色機甲！<br><br>    看到這輛沒有任何標志的黑色汽車，穿著深色作戰服的安全人員在最短的時間內沖了出去，分布在了汽車的四周。雖然這些明顯出自軍方的保鏢臉上依然保持著警惕的神情，但眼眸里的焦慮卻少了許多。許樂注意到自己身前的邰之源，一直緊繃著的後背肌肉，在這一瞬間，也松弛了下來。<br><br>    危險沒有解除，在場的要麼是訓練有素的專業人士，要不就是邰之源這種擁有不符合年齡冷靜的人，能解釋他們忽然輕松的理由，只可能是那輛黑色的汽車。許樂判斷出，同伴們對于這輛黑色汽車似乎擁有無窮的信心。<br><br>    然而就算這輛黑色汽車是特制的，可以防彈，可是難道還可以抵御住一台軍用機甲的攻擊？許樂的腦海里閃過一絲不解。同時他的目光越過了黑色汽車反襯著停車場燈光的頂棚，落在了正對大門的那堵水泥牆上。<br><br>    在豪華包廂里，他能比特勤局特工更早發現那名內奸，一來是因為他是個局外人，二來是他擁有極為敏銳的眼力與听力，三來是這一年來的經歷。自從逃離東林星之後，他一直小心翼翼地觀察與警備四周的一切，時刻擔心有一天聯邦的警察或是特種兵，會來對付自己。所以在沒有感到絕對安全的時候，他會用懷疑一切的目光注視所有人，以及所有不尋常的地方。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./118.html">Previous</a></div><div class="next"><a href="./120.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

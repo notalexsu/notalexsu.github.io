@@ -1,0 +1,50 @@
+<head><title>間客 第25頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="24.html">Previous</a></div><div class="next"><a href="26.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二十五章 虎軀一震<br><br>    下水道里的污水並不多，難成洶涌之勢，更談不上汪洋，然而這一段渠道正是河西州下水管道體系里落差最大的一段。在那些混雜著垃圾腐葉塑料袋的污水沖擊下，許樂瘦削的身軀根本無法保持平衡，只能無奈絕望而悲哀地順水遠去，眼看著老板封余在水那一方悄然轉身，留給自己最後一個難以言喻的背影。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./24.html">Previous</a></div><div class="next"><a href="./26.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

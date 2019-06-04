@@ -1,0 +1,50 @@
+<head><title>間客 第502頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="501.html">Previous</a></div><div class="next"><a href="503.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二百章 東方有事不能安<br><br>    許樂醒過來時，已經是清晨時分，營地四周卻沒有什麼太明亮的光線。他挪動了一下身體，才發現自己的左手不知道什麼時候，又伸進了商秋的絨衣，貪戀地握住或是托住了那一團夸張的美妙，不知道是睡袋里太熱還是什麼別的原因，汗水打濕了他的身體，將內衣粘在了一處，很有些不舒服。<br><br>    他慢慢抽出手來，安靜地看著身邊熟睡中的商秋，沒有戴眼鏡，緊閉著雙眼的商秋，有些訝然地發現了她與平日里冷靜智慧潦草不拘小節男孩氣不同的另一面——睡夢中的姑娘臉蛋微鼓，像含了兩個饅頭一般，時不時叭嗒一下嘴唇，十分可愛。<br><br>    有些不舍地爬出睡袋，整理好防寒服，走出營房，踢開積雪，蹲在了機甲下面，眯著眼楮望了一眼雄偉冰川那頭開始反射的第一道光，他開始漱口。<br><br>    往嘴里噴了速效綜合清潔劑，牙齦處頓時傳來一陣劇烈的麻癢感覺，這種非常不愉快的體驗，讓他用力地閉上了雙眼，眉頭擠在了一處。<br><br>    這好像是某種哲學家用力思考問題時的表情，又或者是純潔的小男生拼命回憶少年時光的模樣，許樂閉著眼楮這般安慰自己。<br><br>    “你這樣子很像便秘。”<br><br>    剛剛穿好衣服的商秋，呵著霧氣、縮著肩膀走了過來，蹲在了他的身邊。<br><br>    許樂沒有回答她的話，直到嘴里的麻癢感漸漸消褪，才睜開雙眼，從身旁的機甲表面挖了一坨雪狠狠塞進嘴里，用力的咀嚼了很多下，吐了出來。<br><br>    也許真的是因為兩個人在睡袋里太擠的緣故，他們兩個是醒的最早的人。商秋接過他遞過來的清潔劑，開始進行同樣的漱口程序，姑娘清爽的直眉被刺激地彎了三道彎，就像是女初中生第一次喝白酒的模樣，忍不住張著嘴巴，不停地吸著無比寒冷的涼氣。<br><br>    “當心把肺凍僵了。”許樂提醒道。<br><br>    “木事。”商秋像接受醫生檢查一般張著嘴，望著極遠處天邊的冰川峰頂，含糊不清說道︰“呃看阿邊好漂亮。”<br><br>    女人都喜歡漂亮，所以漂亮兩個字的發音在此時還是如此準確。許樂笑了笑，站起身來，順著商秋的視線望去，看見一片難得一見的美景。<br><br>    西方最高的那座雄奇冰川，正在朝陽下泛射著白金一般的瑰麗光芒，它的後方是一片如圓鏡般的碧藍天空，相映澄清絕美，如夢如幻如想像中的離世天堂。<br><br>    如斯美景當前，許樂唇角的微笑卻迅即斂去，在心里惱火地罵了一句髒話。看來昨天夜里暴風雪就停了，厚重的雲層已經遠離西方的碧藍，即便地磁暴還在繼續，可聯系上憲章網絡的可能總要大很多，負責監控的顧惜風和他的下屬究竟在做什麼？<br><br>    “早上好。”許樂下意識里快速說道。<br><br>    蹲在地上愁眉苦臉的商秋，並不知道他是在對空氣或者別的事物說話，愣了愣後莫名回答道︰“襖。”<br><br>    許樂的左眼瞳里快速地浮現出一行白色的字符︰“感謝你的呼喚，早上好，許樂中校，看來你昨晚過的很愉快，男女清晨同時起床，並且一起打理個人衛生，這應該是發生性行為後的情侶行為，雖然這里是條件特殊的戰場，可我依然想恭喜你。”<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./501.html">Previous</a></div><div class="next"><a href="./503.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

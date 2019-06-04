@@ -1,0 +1,50 @@
+<head><title>間客 第676頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="675.html">Previous</a></div><div class="next"><a href="677.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百零五章 我將指控<br><br>    片刻後，帕布爾總統黝黑的臉頰上閃過一絲訝異和震驚，不知道鄒部長在他耳邊說了些什麼，只見總統先生的眉尖越來越皺，隱隱可以看到憤怒的征兆。<br><br>    看到這一幕，會議室里的聯邦高官們心情頓時為之一緊，猶疑不定地望著那邊，不知道發生了什麼事情。緊張的氣氛中，根本沒有人注意到一臉驕容等著看軍方丟臉的梅斯議員。<br><br>    梅斯議員臉色極為難看，惱怒地抗議道︰“鄒部長，請你尊重一下我好不好？”<br><br>    鄒應星微微一怔，在椅上坐直身體，將金屬細邊眼鏡小心地戴回鼻梁上，望著梅斯議員禮貌地點頭致意，這才慢條斯理，不慌不忙地解釋道︰“議員先生，我不是不尊重您的發言，而是您剛才所提到的事情，現在發生了一些變化。”<br><br>    說到此處，鄒部長的聲音驟然變得冷淡起來，繼續說道︰“指證許樂上校的……萊克上校，因為牽涉到一起嚴重的刑事案件，馬上面臨司法部的指控，他的相關證詞證言的效力，非常值得人懷疑。”<br><br>    與許樂關系良好的西林軍區內部，居然會有位高級軍官主動指證他是聯邦通緝犯，而緊接著不到咖啡變冷的時間里，這位高級軍官便忽然牽涉進一起所謂的嚴重刑事案件！<br><br>    不是在場的所有人都能看清楚這出急轉直下的戲劇背後隱藏著什麼，但他們非常明確，很明顯當一方發力之後，站在許樂身後的聯邦軍方，尤其是國防部體系，也開始發力了。<br><br>    隨著鄒部長的聲音落地，總統先生點頭表示同意，會議室的大門再次被推開，國防部內務處軍官在徐松子的帶領下，面無表情地走到萊克上校的身前，打開了手銬。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./675.html">Previous</a></div><div class="next"><a href="./677.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

@@ -1,0 +1,50 @@
+<head><title>間客 第469頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="468.html">Previous</a></div><div class="next"><a href="470.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百六十七章 菊花夜市空襲及鳴槍事件（二）<br><br>    許樂轉身用堅實的後背抵抗漫天飛舞的啤酒瓶，正好看著遇襲的青龍山部隊，只見無數酒瓶轟轟落下，斯處早已一片狼藉，餐桌被砸翻掀起，啤酒瓶在地面撞擊碎開，濺起的玻璃碎片就像彈片一般危險至極。<br><br>    那名青龍山軍官冷冷地盯著那邊，根本不管那些危險的酒瓶擦著自己的腦袋飛過。<br><br>    砰的一聲悶響，一個啤酒瓶砸到了他的頭上，砸出一道深可見骨的血口子，軍官面無表情地深吸了一口氣，抹掉臉上的鮮血，忽然打破沉默，指著那邊大聲吼道︰“給我打！”<br><br>    青龍山部隊的裝備遠遠落後于政府軍，即便聯邦國防部支援了很多，看上去卻依然顯得樸素到有些可憐，但他們的軍事素養和紀律性卻是遠遠超過了政府軍的平均水平，當那些凶猛的啤酒瓶飛過來時，他們或撲倒在地，或掀起餐桌，極為熟練地做起了趨避動作。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./468.html">Previous</a></div><div class="next"><a href="./470.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

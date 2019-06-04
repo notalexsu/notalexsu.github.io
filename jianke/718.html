@@ -1,50 +1,0 @@
-<head><title>間客 第718頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="717.html">Previous</a></div><div class="next"><a href="719.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story"><br>                                                    間客-第四卷 星光流年-這個單章是有貨的<br><br>雖然天下大亂，前面十幾個傢伙的票數菊菊相依，堪稱史上第一混亂，但懶貓既然站在這了，當然要繼續站下去，所以請大家繼續支持月票。（八度吧  WwW.8Du8.Com）<br><br>    呃，沒用戰字，因為昨兒那個拉票就驚嘆的我實在頂不住了，殘餘…<br><br>    情節不是爽的情節；我寫的也不爽，從他嘀的開書時定故事大組時，我就對這情節相當的不喜歡，但必須寫。<br><br>    不喜歡的原因不是許樂被虐什麼的，我向來是後爹，從來不管這些。（八度吧  WwW.8Du8.Com）不喜歡的原因是，其實」我還挺喜歡帕布爾李在道杜少卿這三個丫挺的，結果在這故事裡，他們只能是配角，這可憐的。<br><br>    為故事服務，寫不喜歡的東西。這是很給力的態度，所以我寫的很認真，很給力，廣場那截是不負公子不負君，這一段，我要對得起牆兩邊這些特軸的傢伙。還是以前重複過很多遍的老話。這故事，這情節，是我在我的能力範圍上線儘可能認真寫出來的用心用力的東西。<br><br>    九千字已更，明天繼續認真地寫！<br><br>    月票繼續來！</div><br><br><div class="out"><div class="prev"><a href="./717.html">Previous</a></div><div class="next"><a href="./719.html">Next</a></div></div></body>
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
-function myFunction() {
-	var x = document.getElementById("pages");
-	if (x.style.display === "block") {
-		x.style.display = "none";
-	} else {
-		x.style.display = "block";
-	}
-}
-
-function bookmark(setOrGet) {
-	AWS.config.update({region: "us-east-1"});
-	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
-	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
-	var payload = {
-		"setOrGet": setOrGet,
-		"user": 5
-	};
-	var pullParams = {
-		FunctionName : "bookmark",
-		InvocationType : "RequestResponse",
-		LogType : "None",
-		Payload : JSON.stringify(payload)
-	};
-	var pullResults;
-	lambda.invoke(pullParams, function(error, data) {
-		if (error) {
-			prompt(error);
-		} else {
-			pullResults = JSON.parse(data.Payload);
-		}
-		if (pullResults) {
-			var page = pullResults.page;
-			var link = "./" + page + ".html";
-			window.location.replace(link);
-		}
-		else {
-			alert("Bookmark set!");
-		}
-	});
-}
-
-// document.getElementById("button").onclick = function showPageNumber() {
-// 	var page = document.getElementById("inputPage").value;
-// 	if (!isNaN(page)) {
-// 		window.location = "./" + page + ".html";
-// 	}
-// }
-</script>

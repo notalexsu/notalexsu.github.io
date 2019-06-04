@@ -1,0 +1,50 @@
+<head><title>間客 第68頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="67.html">Previous</a></div><div class="next"><a href="69.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第六章 兩個失眠的青年（二）<br><br>    一身疲倦，滿腦門子官司，渴睡卻又因亢奮而睡不著，這種感覺最令人難受。許樂揉了揉有些發澀的眼，看著開闊房間盡頭那台在無數電纜連接下的合金機甲，頓時再也感受不到先前那種精神折磨，無來由為之一振，眼楮也亮了起來，真的很漂亮，純黑色的機體表面反射著淡淡的啞光，而它身後連接入牆壁中各個端口的電纜，則是依據傳輸數據或是能量的分別，被人漆成了各種不同的顏色，有的白，有的紅，有的藍……<br><br>    就像是一個黑色的遠古武士，身後系著無數條彩帶，被荒原上的風吹起，不停地飛舞著。<br><br>    許樂贊嘆地看著這一幕，忽然覺著人世間無處不是美，哪怕是這樣冰冷的金屬與科技，依然能夠讓人賞心悅目。在因感受到美而震撼之後，許樂漸漸回過神來，又陷入了驚喜之中，畢竟這是他這一輩子第二次看見真正的機甲，上次古鐘號上那台破舊的M02外表像極了垃圾，而眼前不遠處這台懸掛于平台之上的機甲，卻是如此的鮮活，就像是下一刻便會活過來。<br><br>    他小心翼翼地向牆壁那邊靠過去，雖然已經得到了準入許可，可是忽然間看見一個民間極少見到的機甲出現在眼前，他依然難抑心頭的緊張和興奮。<br><br>    這是M系列機甲的原型機，去除了所有的武器系統，和操縱艙的艙門。許樂走到機甲下方，仰頭望著半空中正在泛射著金屬光芒的它，很簡單地判別出了它的型號。在這間開闊的房間里，找到了終端光屏，他仔細地看了一下，才明白了這個房間是做什麼用的，原來是一間機甲操縱的模擬室。虛擬訓練技術幾百年前便開發了出來，問題是一直沒有成熟，如今在聯邦里沒有得到推廣，許樂好奇地看著光屏上的那些說明，發現這一套技術是電子雜志上面已經猜測許久的那套軍方技術。<br><br>    許樂對操作機甲作戰的興趣遠遠不如修理設計機甲，只是他更清楚，一個優秀的機修工程師，必然對于自己研究的對象要有絕對的了解，更需要進行長時間的親身操作，才能夠對那些細微處做出最快速準確的判斷。梨花大學給學生們提供了這樣優良的訓練條件，恰好他的心里對于自身體內的神奇力量與機甲操作間的關系有極大疑惑，自然不會放過這麼好的機會。<br><br>    搓了搓有些冰冷的手，揉了揉有些發紅的眼，許樂平伏下心頭的興奮，沿著M原型機比兩個人還要粗一些的機械腿，設計者在腿旁巧妙地構置出了類似于舷梯的護甲外表，讓這種攀爬顯得並不十分困難。許樂坐到了操作艙內，看著面前開闊的空間，心里生出一種怪異的感覺，手掌微微發抖，放到了身體兩側符合人體工學的指觸式光屏上，這種指觸式操作光屏，肯定與軍用的真實機甲系統不相同，不過用來測試訓練熟悉應該是綽綽有余了。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./67.html">Previous</a></div><div class="next"><a href="./69.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

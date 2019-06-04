@@ -1,0 +1,50 @@
+<head><title>間客 第938頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="937.html">Previous</a></div><div class="next"><a href="939.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第三百六十七章 仿佛當年帕布爾<br><br>    聯邦最高法院宣布愛國者法案即時廢止，對于某些聯邦民眾來說，就像太陽驅散了陰霾，而對于另外的某些聯邦民眾來說，則更像是黑夜重新籠罩了大地。<br><br>    萬民歡騰慶祝的場面並沒有在所有城市里發生，在某些地方，有憤怒的帕布爾主義者走上街頭，揮舞著拳頭抗議，就連那位最高法院德高望重的何大法官，網絡和媒體上甚至極為罕見地出現了批評質疑他的聲音。<br><br>    但至少在被沉默行軍隊伍佔據的拉比大道兩側，在人頭攢動的最高法院大樓四周，沒有出現任何理念沖突與派別之分，無數的人興奮地跳躍，呼喊著口號，歡迎他們心中勇敢的英雄。<br><br>    表情陰鷙守候在警戒線外的聯合調查部門官員，已經在民眾劇烈的噓聲與罵聲中狼狽離開，愛國者法案廢除，聯邦政府再也無法對那兩位新聞人采取強制措施。<br><br>    鮑勃主編和伍德記者高舉雙手，像英雄般高昂著頭顱，在震耳欲聾的歡呼聲中走了出來，在迎接人群最前面，是他們最熟悉的報社同事。<br><br>    首都特區日報的記者編輯們，望著很多天沒有見面的主編和伍德，激動而感傷，有些女性擦拭掉臉上的淚水，強自擠出愉悅的笑容。<br><br>    陶麗斯是鮑勃主編的專職秘書，這位年近四十的女士擁有一頭淡金色的大波浪卷發，她抽泣著走上前來，張開雙臂給了主編先生一個溫暖的擁抱，引來旁邊眾人夸張的笑聲和伍德臉上一絲詭異的笑容。<br><br>    用顫抖的手指替鮑勃披上風衣，然後她從盒中取出一根高級粗煙草，小心翼翼放進鮑勃嘴里。<br><br>    鮑勃主編點燃粗煙草，狠狠地吸了兩口，然後遞給身旁怨念無窮的伍德，望著自己女秘書臉上的淚痕微笑說道︰“不要哭了，會讓人看笑話的。”<br><br>    “嗯。”陶麗斯帶著哭腔應了聲，然後擦去臉上的淚痕，很自然地走到他身旁站住，認真問道︰“回報社？”<br><br>    鮑勃主編和伍德記者下意識里對視一眼，然後望向拉比大道另一側同樣無比擁擠熱鬧的某處，看著那名被記者們和民眾包圍的年輕議員。<br><br>    愛國者法案廢除就能代表真正的自由？<br><br>    身周數萬民眾嘈雜的歡呼聲，讓這兩位被稱為聯邦新聞界良心的中年男人同時皺起眉頭，想到聯合調查部門囚房恐怖的噪音，想起那段黯無光澤的囚禁時光。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./937.html">Previous</a></div><div class="next"><a href="./939.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

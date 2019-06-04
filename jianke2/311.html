@@ -1,0 +1,50 @@
+<head><title>間客 第311頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="310.html">Previous</a></div><div class="next"><a href="312.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第九章 鐲不如舊<br><br>    許樂沉默站在窗前，看著叢生的野草，草色青青，但因為格外雜亂，所以並沒有太多柔媚的春意。傾城軍事監獄的範圍不知道有多廣，也不知道看似寧靜荒涼的田野山林里隱藏著什麼危險，但在被審訊之前，他本來準備不惜一切代價也要嘗試越獄，然而這個計劃，卻不得不暫時終止。<br><br>    當天一腳踹昏聯邦調查局總四科主任，許樂本以為迎接自己的將是監獄方面嚴厲到極致的懲處措施，而且在當時緊張的局勢下，負責審訊自己的聯邦官員們，也會讓自己付出極為慘重的代價，但沒有料到的是，審訊室里的調查局官員還沒有來及做出激烈的反應，監獄方面便派出了一隊士兵，控制住了室內的局面，將他押了出來。<br><br>    似乎有人在保護自己，但不知道是誰。許樂望著窗外暮色中如火燒一般的荒原草海，低頭緩緩地吸了一口氣，覺得自己的情況就像是一團迷霧一般，就連自己都無法理清楚下一刻會發生什麼。<br><br>    他皺了皺眉頭，佝下身體，吃力地搬動著雙腿，緩慢而困難地移動回了床邊。短短的幾步距離，竟是走得如此辛苦，以至于他坐在床沿上時，竟發出了一聲極為滿足的嘆息。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./310.html">Previous</a></div><div class="next"><a href="./312.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

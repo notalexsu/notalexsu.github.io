@@ -1,0 +1,50 @@
+<head><title>間客 第198頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="197.html">Previous</a></div><div class="next"><a href="199.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百三十六章 邰夫人的上午茶<br><br>    聯邦里最有權力的人當然是席格總統閣下。<br><br>    副總統，聯邦管理委員會議長，聯邦調查局局長，國家安全顧問，還有神秘的憲章局局長，這些都是站在總統身邊，站在聯邦權力巔峰上的大人物。<br><br>    各大區的行政長官，像羅斯那樣的大州州長，也都是很了不起的人物，但在聯邦民眾心中聲望最高的，卻是費城李家那位老人。<br><br>    在聯邦的政治架構之外，隱藏在陰影里的七大家，卻擁有足夠的實力，能夠與上面所述的這些大人物們分庭抗禮，尤其是像西林鐘家那種世代駐守宇宙邊陲地帶，近似軍閥的人物。<br><br>    七大家里最神秘低調的邰家，這些年的主事一直是個女人，從在梨花大學的雙月節舞會上與上任邰家家主訂婚之後，那個女人自她的雙十年華開始，一直到現在青春漸去，都應該是這個聯邦里權力最大的女人，沒有之一。<br><br>    尤其是當邰家現在逐漸要走上前台的時候，這位夫人的存在，更顯得是那樣的舉足輕重，她的每一個決策或許都可能影響到整個聯邦的將來。<br><br>    和邰之源成為朋友之後，許樂知道了邰家的歷史以及這個家族在聯邦內的地位，他曾經好奇過，那位大權在握的邰夫人，究竟是個什麼樣的人。來到首都，進入果殼，尤其是最近這兩天來入獄出獄的經歷，讓他最真切地感受到邰家對聯邦的恐怖影響力，于是這種好奇便更為濃郁。<br><br>    坐在黑色的汽車上，坐在電動車上，看著湖光山色，看著青藤雨廊之時，許樂的心情沒有一絲輕松，因為他知道自己馬上便要見到那位夫人，他在心里不停地猜想著，邰夫人應該是個什麼樣的人。<br><br>    怎樣想也想不明白，直到他來到露台旁，看見了陽傘下，白桌旁正微笑看著鄒郁手腕動作的那位婦人……他忽然間明白了，邰夫人就應該是這個樣子，因韶華遠去而顯得尋常安寧的面容，沒有一絲特異之處。<br><br>    無論聯邦里的人們怎樣猜想，邰夫人是這個樣子，那這個樣子的婦人，便就是邰夫人。<br><br>    ……<br><br>    ……<br><br>    沈秘書禮貌地拉開鄒郁身旁的椅子，示意許樂坐下，然後他自己去到了邰夫人的身邊，將椅子拉到了偏後一些的地方，安靜地坐了下來，絲毫沒有在意陽傘外有些熾烈的上午陽光，默然撫手，與傘下的三人保持著合適的距離。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./197.html">Previous</a></div><div class="next"><a href="./199.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

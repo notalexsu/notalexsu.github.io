@@ -1,0 +1,50 @@
+<head><title>間客 第822頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="821.html">Previous</a></div><div class="next"><a href="823.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二百五十一章 別了，聯邦！<br><br>    中止通訊後，許樂沉默了很長時間，他像一個疲憊的老艦長，雙手隔著薄薄灰塵扶住控制台，低著頭，往日野草般堅硬直立的頭發，前端也終于耷拉了下來。<br><br>    能夠捕捉到他此刻最真實的心理感受，所以鐘煙花沒有解開身上的三層束縛裝置，拿一塊不再新鮮的椰奶面包去安慰他，而只是沉默看著他的背影，安靜等著他自己擺脫這種情緒。<br><br>    但很明顯，菲利浦雖然擁有比普通人類強大太多的計算能力，在通過觀察人類表情以及肢體動作來判斷對方真實情緒方面，卻顯得有些笨拙，所以他毫不在意地詢問道︰“和總統先生的判斷結果如何？我們什麼時候離開？”<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./821.html">Previous</a></div><div class="next"><a href="./823.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

@@ -1,0 +1,50 @@
+<head><title>間客 第127頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="126.html">Previous</a></div><div class="next"><a href="128.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第六十五章 國防部長之死<br><br>    聯邦的天空下，不可能有永遠不被揭穿的黑幕，更不可能有完美到找不到任何線索、不留任何痕跡的計劃。一旦黑幕被揭開，發起者曝露，那必將迎來另一方勢力無比狠厲的打擊。所以在最近十個憲歷的漫長時期內，聯邦的政治爭斗，早已經遠離了暗殺之類無法見光的手段，再也沒有什麼勢力敢膽大包天去刺殺總統，各方勢力至少在表面上也總能保持和平。<br><br>    所以憲歷六十七年新年第一天，發生在遠離首都的臨海州體育館事件，會驚動了首都里所有知情的大人物，這已經脫離了游戲規則，是不被整個階層所接受的一種手段，所有勢力在這一刻，都隱晦地表達了對邰家的支持態度，至少是保持了中立和沉默。<br><br>    聯邦政府的調查工作，在那一個清晨里取得了重要的進展。雖然第二軍區七名軍官的自殺身亡，給聯邦調查局的工作帶來了另一方面的壓力，但是那些工作人員只不過換了一個方向，繼續查了下去。<br><br>    進攻體育館貴賓區的武裝分子身份已被查明，那些全部陣亡的武裝分子，是臨海警備區特種連的士兵。然而是誰發出了出兵的直接命令，誰又能夠讓那些忠誠于聯邦的戰士變成了可恥的暗殺工具，暫時沒有查到。但是聯邦調查局細心的官員，從體育館地下停車場那堵新修的水泥牆中，挖掘到了另一條相當寶貴的線索。<br><br>    第一軍區北半球指揮部下屬工兵大隊，在事發前夜，接到了這個任務，而發出這項命令的人，雖然已經很用心地抹去了電文中代表身份的信息片段，但是軍方系統專用的二層信息烙印，卻被那個發出命令的人忽略了。<br><br>    一位聯邦調查局特工，敏銳地捕捉到了這一點，在該項命令文件的核心語句層里，找到了標注身份的幾個字母。<br><br>    這位特工在調查局內部有個綽號，叫做毛球，因為一年四季，他都很喜歡穿著一身合成毛衫。<br><br>    聯邦調查局通過二層信息烙印往下調查，將所有的矛頭對準了國防部大樓里的一位男性秘書。<br><br>    ……<br><br>    ……<br><br>    六十七憲歷一月三日清晨，國防部大樓保持著一如既往的莊嚴肅穆……以及空曠。建築大廳明亮的大理石地面上用金粉繪著聯邦的軍章圖案，沉默而表情輕松的男女軍官們，在這幅圖案上走過，在無比宏大的建築內部，看上去就像聯邦電子圍牆那邊，無邊無垠的草原上，時不時行過的幾匹駿馬。<br><br>    前天發生了什麼事情，國防部大樓的上層軍官已經知曉，昨天大樓旁邊的培訓中心發生了什麼，這幢大樓里的大部分人已經知道，至于第二軍區軍官集體被捕後，有七名軍官自殺身亡的消息，相信這幢大樓里負責打掃清潔的中年婦女也已經知道了。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./126.html">Previous</a></div><div class="next"><a href="./128.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

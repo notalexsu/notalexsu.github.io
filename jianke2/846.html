@@ -1,0 +1,50 @@
+<head><title>間客 第846頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="845.html">Previous</a></div><div class="next"><a href="847.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二百七十五章 今天你穿內褲沒有？<br><br>    很多年前在遙遠的聯邦西林邊陲星域，在那顆叫5460的星球之上，一位叫作亞瑟的帝國軍官，因為拒絕服從上級屠殺聯邦平民的命令，被軍法處死，然後和那九千多具聯邦平民尸體一道，埋在寒冷的地下，而這位叫亞瑟的帝國軍官，正是甦珊大媽的兄長。<br><br>    “我為他感到驕傲。”<br><br>    甦珊大媽轉身攪拌鍋中的雜燴粥，又擦了擦眼角，她也不知道為什麼，被生活磨礪的足夠粗糙的神經，今天卻變得如此縴細敏感，仿佛回到衣食無憂，幸福美好的童年。<br><br>    熱騰騰香噴噴的雜燴鍋吃完，安靜的小院亮起柔眼的燈光，許樂把鐘煙花趕去洗碗，甦珊大媽拗不過他，只好坐下牽著他的手閑聊，關心這些年他究竟是怎樣過的，聊至某時，大媽想起廚房里講的那個故事，極為珍重地從房中取出一本保存良好的日記本，小心翼翼地翻開，繼續講述她對兄長的懷念以及由此而生的驕傲。<br><br>    “這是當年他入伍的時候，我送給他的日記本。”<br><br>    日記本外面是棕褐色的粗制小牛皮外套，植物縴維紙內頁上，藍黑色墨水記著潦草的內容，許樂默然看著書頁在眼前逐次翻動，並沒有告訴甦珊大媽，正是自己發現了她兄長的遺體，也正是他把那本日記帶回帝國，然後經由懷草詩的手，送還至這個溫馨平靜的小院。<br><br>    在付出兩個碗破碎的慘重代價後，鐘煙花終于笨拙地完成了清潔工作，有些尷尬地搓著發紅的小手，訥訥然坐回客廳的椅中，看到這幕後好奇地湊了過去。<br><br>    “我們打會兒牌吧？”許樂笑著對甦珊大媽問道。<br><br>    就像當年逃亡帝國里的很多長夜那樣，小院里開始了和賭博無關的牌局，帝國南路花牌的玩法確實很有意思，頂替了保羅位置的鐘煙花，只花了三局的時間，便深深地陷了進去。<br><br>    深夜人靜，院外小巷里開始響起野狗和野貓追逐挑釁的聲音。<br><br>    ……<br><br>    ……<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./845.html">Previous</a></div><div class="next"><a href="./847.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

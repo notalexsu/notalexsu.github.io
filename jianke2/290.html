@@ -1,0 +1,50 @@
+<head><title>間客 第290頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="289.html">Previous</a></div><div class="next"><a href="291.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二百二十八章 這里的黎明躲貓貓<br><br>    這里的黎明靜悄悄。<br><br>    環山四州和平基金會名義是一幢大樓，實際上是一大片街區，向著正街的方向沒有明顯的圍牆與門禁。用基金會網站的話來說，這代表著麥德林議員領導的基金會秉持著一顆開放無類的心，歡迎任何派別的人前來。看上去沒有圍牆和門禁，只有草坪雜花，但誰都知道那里的防守最為森嚴，許樂沒有愚蠢到偽裝捐款者大方走入，而是選擇了這片街區安靜的後方。<br><br>    街區後方有高牆，高牆之上卻沒有鐵絲網，牆後也沒有扛著槍的警衛，因為這里不是看守所或者監獄，而是和平基金會開設了很多年的孤兒院。<br><br>    環山四州處于聯邦政府與青龍山反政府軍對峙的第一線，雖然這些年的軍事沖突越來越少，但還是有很多無辜的民眾喪生于流彈硝煙之中，和平基金會將那些失去了家庭的可憐孩子接來此地，設置了孤兒院，對他們進行教育，再讓他們融入社會。基金會對戰爭孤兒的關懷得到了整個聯邦社會的好評，麥德林當然會很好地抓住這種政治道德資本，在孤兒院的建設上不遺余力，而聯邦各地的捐款也源源不斷進入他所控制的基金會賬戶之中。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./289.html">Previous</a></div><div class="next"><a href="./291.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

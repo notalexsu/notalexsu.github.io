@@ -1,0 +1,50 @@
+<head><title>間客 第481頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="480.html">Previous</a></div><div class="next"><a href="482.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百七十九章 春風里的老宅，牢籠里的白兔（下）<br><br>    謀殺一位聯邦現役中校軍官，對干隱藏在權力陰影中的世家子弟，尤其是那七個千世家族的子弟而言，或許確實有些棘手，但絕對談不上真正的麻煩。<br><br>    當初在虎山道上，許樂手中刀光一閃，前途無量的樸志鎬，這位國防部重點培養的軍官，鐵七師預定好了的準營長頓時化為一縷幽魂，再無發亮的機會，然而莫愁後山那位夫人一句話不曾說，只是沈離打了幾個電話，一應調查便分崩離析，最終悄無聲息，即便憲章局都沒辦法找出其間的錯漏。<br><br>    再往歷史的遠處望去，前後有幾名聯邦總統被刺殺，在那些歷史的陰影中，可以清晰地看到七大家的身影。雖說在政府的強力打擊和民眾集體意志的反制之下，如今的七大家再也未曾采用過如此玉石俱焚的血腥舉措，可誰也不會懷疑，佔據宇宙極大資源的他們，擁有這種恐怖的能力。<br><br>    可如果他們想謀殺的中校叫許樂，這件事情便會變得有些麻煩，以至于在西林向來橫行的鐘家二少爺，都變得有些緊張。<br><br>    電話那頭的聲音繼續說道，“放心吧，已經查清楚了，莫愁後山那位夫人並不喜歡他，他也不是老爺子的私生子。”<br><br>    很簡單的兩句對話之後，鐘子期便掛斷了電話，至于具體的事情，自然有雙方下屬的下屬的下屬去具體聯絡安排，事實上，這種安排已經持續了很久，只是等待著一個具體的時間點爆發出來。<br><br>    之所以先前在電話中，他依然顯得有些猶豫，問了那幾句，純粹是有些擔心許樂的背景。<br><br>    其余的具體事情，鐘子期這些世家子弟並不擔心，那兩位來自百慕大的專家，都不清楚誰是任務的發布者，無論是資金流動還是聯絡，都由最專業的人士進行處理，專家進入聯邦境內後的槍械配備，則是來自青龍山部隊——如今特一師的軍械庫。<br><br>    而那兩名百慕大的專家能在落日州沉默等待這麼長時間，還沒有被軍方和聯邦調查局抓住，則依賴于他們在政府和西林大區間的隱藏力量。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./480.html">Previous</a></div><div class="next"><a href="./482.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

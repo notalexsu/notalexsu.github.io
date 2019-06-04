@@ -1,0 +1,50 @@
+<head><title>間客 第815頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="814.html">Previous</a></div><div class="next"><a href="816.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二百四十四章 蘭花不是草，是爺<br><br>    喝醉的官員斜乜著眼打量著茶館的老板，手依然摟著鐘煙花，打了個酒嗝後惱怒叫嚷道︰“你什麼態度？你知道我是誰嗎？”<br><br>    因為這種驕橫的態度，茶館老板心情微凜，剛剛沖出來的勇氣頓時少了大半，但看著那個被官員強行摟在懷里的小女孩兒，依然是低聲勸了兩句，他清楚在這大街之上，這名官員就算醉的再厲害，也不敢做出什麼傷天害理的事，頂多就是揩油佔佔便宜，雖然變態，但小女孩兒應該不會有什麼危險。<br><br>    旁邊的臨街門臉里走出一些民眾，好奇地看著這一幕，那名官員臉上有些掛不住，仿似受到了極大的侮辱，叫囂不停，激動地揮舞著手臂，險些要揮到鐘煙花的臉頰。<br><br>    爭吵之中什麼問廁所方向，政府特別調查員和你們某某平級之類的話，根本沒有資格進入鐘煙花的耳朵，她輕拍那名醉酒官員的胸腹，忽然堆起笑容，口罩外的眼楮眯成新月，甜甜說道︰“大叔，你把我摟疼了。”<br><br>    小女孩兒的聲音很清脆很清柔，醉酒官員傻呵呵笑著松開了手，試圖輕佻地伸手拍打她的小臉蛋兒，口中含糊不清說道︰“乖，真……啊！”<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./814.html">Previous</a></div><div class="next"><a href="./816.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

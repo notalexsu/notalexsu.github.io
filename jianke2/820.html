@@ -1,0 +1,50 @@
+<head><title>間客 第820頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="819.html">Previous</a></div><div class="next"><a href="821.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二百四十九章 舊船票（下）<br><br>    眼前一片黑暗，鼻端傳來某種怪異的香甜味道，許樂不知道飛船內部為什麼會出現這種味道。<br><br>    正如先前扛著兩把六管遲林橫掃四方時，他根本沒有辦法認出那艘破雲而出的破爛飛船，就是那艘曾經把他救出帝國的三翼艦。同樣是破爛總有程度上的差別，當年那艘三翼艦破爛的還算有些品味，而今天卻已經變成超出人類最荒誕藝術家想像的模樣。<br><br>    因為沒有認出三翼艦，所以更沒有想到會听到飛船處響起老東西的聲音，那道聲音熟悉卻又陌生，要顯得年輕很多，尤其是腔調里濃郁的嘲諷味道，帶著貴族腔的揶揄勁兒，卻是那麼的難以忘懷。<br><br>    柔順的燈光依次打開，將船艙雜亂的空間展露在他的眼前，甫入光明，他忍不住眯了眯眼楮，草草打量了一下前方蒙著灰塵的控制台，還有那些被焊死在堅硬合金板上的裝備，撓了撓頭，有些難以置信地問道︰“你不是死了嗎？”<br><br>    “我又不是你們這種低等碳基結構組成的類猿猴狀生命體，哪有這麼容易死掉。”<br><br>    三翼艦內響起某人的聲音，許樂確認這個聲音是屬于他的，確認確實比以前要顯得更加年輕生動活潑，一種發自內心最深處的微笑混著疲憊涌上臉頰，他張開自己的雙臂，對空氣中無形的電波做了一個擁抱。<br><br>    他感慨道︰“以後再也不要搞假死這一套騙人了，我們這種低等類猿猴生命體，因為你這種高等機械生命死翹翹而掉眼淚，實在不是什麼太光彩的事情。”<br><br>    “你哭過嗎？”<br><br>    菲利浦好奇地問道，控制台前方的縴細機械臂高速移動下來，前端的視頻頭與許樂的臉隔著極近的距離相對，似乎想要從他微黑瘦削的臉頰上找到淚痕，然而最終也只看到了一些水漬，他沒好氣地說道︰“全部都是我潑的水，哪里有哭過。”<br><br>    許樂眉梢一挑，惱怒說道︰“你試試哭一場，我幾個月後再來看你臉上有沒有東西。”<br><br>    “我從來沒有哭過，雖然核心程序里某些沖突可以比喻成人類的情感，但我始終沒有發現過類似的情緒，或者有，也被我主動排除在外。”<br><br>    菲利浦很無所謂地說道，那根縴細的機械臂在許樂身前不停搖晃，就像是一個正在揮動手臂表示自己對什麼事情都滿不在乎、偽裝已經成熟所以需要強作堅強的小孩子。<br><br>    知道這家伙還活著，許樂的心情非常好，懶得和他再進行這種重復過很多次的爭論，轉身準備向後艙走去，準備接下來的事情，卻不料腳下被某個東西一絆，險些跌倒，他低頭一看，地面上的束縛帶內正緊緊綁著一個沉重的大書包。<br><br>    “噢，對了，有件事情我忘了和你說……”<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./819.html">Previous</a></div><div class="next"><a href="./821.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

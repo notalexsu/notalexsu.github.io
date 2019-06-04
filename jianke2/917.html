@@ -1,0 +1,50 @@
+<head><title>間客 第917頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="916.html">Previous</a></div><div class="next"><a href="918.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第三百四十六章 燒烤攤邊的兄弟<br><br>    李維也笑了起來，手指摩挲著油膩膩的酒杯，臉上滿是懷念，感慨說道︰“是啊，這就是我最初的理想。”<br><br>    “我喜歡百慕大，除了這里比聯邦簡單、憑拳頭講道理的規矩比較符合我的胃口，還有一個原因就是這里的飲食比較符合我的胃口。”<br><br>    “你喜歡吃肉，我也喜歡吃肉，實際上我發現只要是人哪里有不愛吃肉的？當然我是說那種真正的肉。”<br><br>    李維喝了一杯酒，眯著眼楮回憶當年︰“我被邰家綁到百慕大那時候，生活其實過的不錯，他們沒有怎麼虐待我，但就是不肯給我肉吃，大概他們也想不起來，那個年輕的俘虜其實並不怕死，怕的是到了百慕大這種可以放開肚皮吃肉的地方，卻嘗不到肉味。”<br><br>    他指著燒烤攤對面那幢房子，笑著說道︰“當時我就在那里，天天聞著這邊傳過去的燒烤味。”<br><br>    當年為了威脅許樂，莫愁後山那位夫人把李維從東林綁到了百慕大，對于當時沒有真正經歷過凶險，在偏僻東林的李維來說，可以想像那是怎樣驚心動魄的經歷，怎樣慘痛的回憶。<br><br>    許樂舉起酒杯相敬，然後一飲而盡，他一直沒有問過當年那些事情的細節，作為兄弟本來也不需要問。<br><br>    “上次在聯邦第一次見面時，你請我在望都吃了一頓燒烤，味道不錯，就是可惜沒有什麼真正的肉。”<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./916.html">Previous</a></div><div class="next"><a href="./918.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

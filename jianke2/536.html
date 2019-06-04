@@ -1,0 +1,50 @@
+<head><title>間客 第536頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="535.html">Previous</a></div><div class="next"><a href="537.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第二百三十四章 別有路（中）<br><br>    陽光穿透白色的垂簾，照進床頭，林斗海緊皺著眼楮，低聲厭惡地罵了兩句髒話，然後起身簡單地梳洗了一番，隨意系了件綢間麻睡衣，走出了房間。听著海畔傳來的歡笑聲與音樂聲，他的唇角微翹，露出一絲快活的笑容。<br><br>    去年秋天，他和鐘子期、南明秀安排了那場落日州的暗殺，兩大家族的接班人加上青龍山反政府軍領袖的公子，在大人物們的默視下，動用了家族的力量，結果卻依然沒能殺了那個人。事後，南明秀被綁回青龍山，鐘子期被逐回靜衛二，他則被家里的長輩直接從西陸馬場押回了S3家族莊園，直到一個月前才結束了軟禁。<br><br>    雖然不再被軟禁，卻依然有很多地方不能去，林家的態度依然謹慎甚至顯得有些緊張，完全不像千世之家的淡然作派，從此點上可以看出他們對許樂以及他身後那位老爺子的忌憚。<br><br>    這種日子非常地令人苦惱。<br><br>    林斗海取了一杯特釀，坐在了海風中的躺椅上，心中生出幾絲怨氣，長輩們默視他們做了這件事，結果卻要他們這些年輕人來承擔失敗的後果。<br><br>    手指在光滑的水晶杯腳下滑過，他想起昨夜那個女人脂般的肌膚，滿意地笑了起來，然而這笑容馬上斂去，因為他又想到了已經解除婚約的未婚妻。<br><br>    七大家之間的聯姻，雖然並不會像帝國內部那樣死板，卻代表著彼此間的尊重，有非常強烈的儀式感，然而林半山一句話，南相家與林家的聯姻便煙消雲散，家族的長輩們誰都不願意去招惹那位破門子，只能將壓力與訓斥轉嫁到他的身上。<br><br>    林斗海握著杯腳的手指微微用力，眉眼間浮起淡淡怨意，他恨自己的兄長，卻更恨讓南相美跳脫出一味溫柔性情，敢于說不的許樂。<br><br>    “你的心情似乎不大好？”<br><br>    一位三十歲左右的少婦款款而至，微笑著坐在了他的身邊，歲月的流逝在她的臉頰上確實留下了一些痕跡，但那些痕跡並不滄桑，一味熟媚，令看到她的男人眼與心都忍不住大動起來。<br><br>    林斗海端著酒杯，禮貌地點頭示意，沒有回答她關心的問題，也沒有像一位他習慣扮演的公子哥角色那般盯著對方看，因為他很清楚這個叫李飛絨的女人，不是他能觸踫的角色。<br><br>    在別有江山莊園這些天的生活，這個女人很細心地替自己打理的極好，比如昨天夜里那個婉轉微羞的青澀花朵兒……<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./535.html">Previous</a></div><div class="next"><a href="./537.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

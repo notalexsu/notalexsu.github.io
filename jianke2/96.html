@@ -1,0 +1,50 @@
+<head><title>間客 第96頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="95.html">Previous</a></div><div class="next"><a href="97.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第三十四章 捧腹而走（下）<br><br>    對方說請，許樂很自然地接了一句︰“請……稍微等一下。”<br><br>    不得不說，同樣一種鍋底湯熬出來的白菜滋味也各有不同，這是菜的問題。第一軍事學院的學生們都是很驕傲的人，可是這份驕傲表現出來的氣質卻是截然不同，駕御藍黑色機甲的安達會表現的躁狂輕浮，周玉則是表現的相當優雅。<br><br>    听到耳中傳來的聲音，周玉微微一笑，看著監控屏幕上那個勉強維持著平衡的黑色機甲，輕聲說道︰“好的。”<br><br>    他不知道黑色機甲里的那人要自己等什麼，或許是爭取一點休息時間，或許是想出戰勝自己的方法？絕對的自信讓周玉平靜而從容地表現著第一軍事學院的風度。而黑色機甲里的許樂似乎也真的只是在休息，機甲呆呆地靠著牆壁站立許久，沒有任何動作。<br><br>    長時間的安靜與對戰的停頓，對戰室里詭異的氣氛，呈現在綜合館巨大的光幕上，終于被綜合館里那些不停鼓掌，摒著氣息替黑色機甲加油的學生們注意到了，掌聲漸漸稀落下來，回復到無比的安靜之中。所有人意外地看著光幕上一絲不動的兩台機甲，都不知道發生了什麼。<br><br>    施清海正百無聊賴地搓著被燙紅了的手指，秀氣的眉毛皺得極為好看。忽然間被四周環境里的異動吸引了注意力，好奇地看了一眼光幕，靜靜看了片刻，將對戰室里兩位機甲操控者間的交流猜到了少許，忍不住笑了起來，心想周玉這時候一定會給予對方最大限度的寬忍，以表現自己的風度，一院出來的人果然都是這麼臭屁。只是那台黑色機甲還想蹦什麼？實力的差距太大，哪怕再沉默地思考下去，黑色機甲也不可能在這麼短的時間內擊敗周玉操控的銀色機甲，除非黑色機甲里那位太子爺忽然間小宇宙爆發。<br><br>    距離綜合館並不遙遠，卻格外森嚴安靜的小別墅里，邰之源也正捧著咖啡杯，饒有興致地注視著光幕上兩台機甲的沉默，對戰的雙方一個是他不為人知的“朋友”，另一個是他將來的下屬，他很清楚雙方的實力，雙方的性格，笑眯眯地準備看許樂倒下再爬，爬起再倒，就像23頻道那丫頭演的熱血太空劇般上演。<br><br>    便在此時，沉默了很久的黑色機甲忽然動了。<br><br>    施清海的眼楮眯了起來，綜合館里的人們緊張而有些不忍地看著，小別墅里的邰之源微笑喝著咖啡，屈起了擱在扶手上的左手拇指，在心里輕輕數道︰“一……”<br><br>    只有六秒，邰之源相信自己的判斷力，許樂只能支撐六秒。<br><br>    ……<br><br>    ……<br><br>    在第二秒鐘的時候，黑色機甲與銀色機甲已經狠狠地再次撞擊在了一起，這次卻沒有響起清脆沉重的金屬踫撞聲，因為就在肉眼無法分辨的那一剎那間，黑色機甲已經損壞的兩只機械臂忽然搭起了一個奇怪的角度，封在了機甲的正前方！<br><br>    銀色機甲像刀鋒一樣撕裂空氣，直取黑色機甲操控艙要害的突擊右臂，便被黑色機甲兩只殘破的，甚至隱隱冒著火花的機械臂擋住了。更準確地說，不是擋，而是格，兩只機械臂之間的角度顯得格外怪異，呈放射狀向外，恰好將銀色機甲的機械臂夾在了當中！<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./95.html">Previous</a></div><div class="next"><a href="./97.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

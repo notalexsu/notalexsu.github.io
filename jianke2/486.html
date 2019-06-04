@@ -1,0 +1,50 @@
+<head><title>間客 第486頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="485.html">Previous</a></div><div class="next"><a href="487.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百八十四章 七斤半<br><br>    許樂是經過認真的思考，最終發現再如何考慮，依然沒辦法強行壓抑住那個念頭，才會勇敢如斯地說出這句話。然而鐘司令沒有回答這個問題，就如根本沒有听到一般，一雙臥虎花眉平坦如常，招手喚來一瓶澄靜若水的酒，倒在雙方的口杯之中。<br><br>    鐘瘦虎舉杯一飲而盡，若水的白酒辛辣其實如刀，入喉便化作一道火線，割的傷痕累累，他的眉頭皺起，享受著這種痛並快樂的感覺，深吸一口氣，嘶聲說道︰“不要執著于誰想殺你，關鍵在于你現在是不是還活著。”<br><br>    這句話不知道算不算是某個答案，許樂不解，沉默地端起杯中白酒，凝視片刻，緩緩啜下，只覺得苦澀難受至極。<br><br>    “我父親活著的時候，聯邦里沒有任何人敢動我，因為他活著，若我死了，他必將憤怒，怒火在聯邦的土地上燃燒，沒有幾個人能承受得住。”<br><br>    鐘瘦虎繼續淡然說道︰“就如我若活著，便沒有人敢動我的女兒，這是一個道理。”<br><br>    “現在很多人想嘗試著殺我，因為我此刻若死了，沒有人有能力把我死後幽魂的怒火燃燒至聯邦的每一處。”鐘瘦虎放下酒杯，微抬下頜，說道︰“但我曾經親手稱過頭顱的重量，不過七斤半，帝國人和我們都是一樣的人，所以你我的頭也不過是七斤半。”<br><br>    “我很想看看，這個宇宙里有誰能把我這七斤半砍下來。”<br><br>    許樂安靜地听著，大致明白面前的大人物想說什麼，可是安靜終難持久，他忍不住蹙著眉尖說道︰“木谷里……好像出過問題。”<br><br>    在首都南郊的木谷莊園中，曾經發生過一次針對鐘煙花小朋友的暗殺事件。<br><br>    鐘司令微微眯眼，端起杯中烈酒一飲而盡，沒有開口說什麼，唇角泛起一絲微笑，這笑容落在人們眼中，卻是那樣的冰冷。<br><br>    食肆外的大街一片安靜空無一人，天色早已浸入藍黑墨水般的顏色，便在此時，遠處的落日州勝利廣場方向，忽然傳來無數聲巨響，美麗的煙花沖天而起，在夜穹里綻開，似一朵朵艷麗的花。<br><br>    ……<br><br>    ……<br><br>    西林落日州為了慶祝前線某次戰役的勝利，依照很多年來的歷史習慣，慷慨地燃放著煙花。然而在照耀夜空的煙花背景下，沒有多少人注意到有些零碎的槍聲響起，在這些繁瑣的聲響中，在落日州首府街道上穿掠的尖銳警報聲，竟變得有些落寞。<br><br>    聯邦西林軍區憲兵總部，法務處大樓，司令部直屬警備師營地，伴隨這些尖銳的警報，涌出無數輛軍車，車上面全部是荷槍實彈的西林戰士。<br><br>    數千名西林軍人分做無數支隊伍，涌入了長風軍事基地，強行進入郊區某間倉庫的地下空間，進入聯邦調查局駐西林總部，完全控制了國防部的金星大酒店，只不過短短的半個小時，便有無數單位陷入了西林軍區的絕對控制之下。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./485.html">Previous</a></div><div class="next"><a href="./487.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

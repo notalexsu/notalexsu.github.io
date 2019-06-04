@@ -1,0 +1,50 @@
+<head><title>間客 第338頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="337.html">Previous</a></div><div class="next"><a href="339.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第三十六章 破營（四）<br><br>    不是當年，不是老師長。<br><br>    邁爾斯上將霍然起身，感慨萬分望著光幕上的黑色機甲，片刻後便醒過神來，距離那些在帝國星球原野上征戰的日子，已經過去很多年了。<br><br>    在藍池峰陡坡于漫天平射榴彈中不停顫抖，用妖異高速身法避開傷害，帶著股冷冽之意繼續加速前行的黑色機甲，比起當年那位姓李的師長操控，很明顯還有極大的差距，他開的是MX，師長開的是M37，他卻依然沒有達到師長當年那種一夫闖關，江河讓路的境界。<br><br>    但相隔數十年的兩台機甲，無論是操控手法還是運行痕跡，都有些形神相似之處，邁爾斯上將看著這幕，以為自己了解了老師長對許樂回護有加的真實原因，不禁感慨無語。<br><br>    十七個繁復精密而艱難的區域高速趨避，實際上只花了很短的時間，觀看軍演的眾人只覺得眼前花了幾花，那台黑色機甲瞬間脫離了平射榴彈的火力覆蓋範圍，掙破了山谷間的煙塵，似一尊自天外來的幽冥殺神般，繼續向著山下沖了過去！<br><br>    無論是最初被阻擊，還是在此後躲避榴彈射擊線路的艱難過程中，黑色機甲始終沒有做出絲毫減速，哪怕每一次不定式回轉滑步，也都是在高速之中完成。<br><br>    眼看著黑色機甲向山谷墜落的速度越來越快，快要變成一道流動的黑光，已經被這名機師超絕操控技巧所震驚的觀戰眾人，不由覺得有些膽寒心顫，如果突破了速度上限，機載系統失控，這台黑色機甲會不會摔的四分五裂？<br><br>    明明應該猜到這名機師就像先前那般，肯定隱藏著許多驚喜，但親眼目睹這種高速近乎失控的瘋狂沖擊，眾人依然無比擔心。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./337.html">Previous</a></div><div class="next"><a href="./339.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

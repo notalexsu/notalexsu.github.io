@@ -1,0 +1,50 @@
+<head><title>間客 第698頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="697.html">Previous</a></div><div class="next"><a href="699.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百二十七章 施公子（中）<br><br>    一台破爛的貨車，停在草地邊。戴著灰帽子的施清海，看著街對面那間民宅，下意識里舔了舔發干的嘴唇，點燃一根三七牌香煙後，拿起電話撥通了一個號碼。<br><br>    “誰？”電話那頭很熱鬧，像是什麼市場之類的地方。<br><br>    “我。”施清海倚著車窗，三根手指捉著煙頭，輕輕晃著。<br><br>    “噢，什麼事兒？”<br><br>    “我要進去了。”<br><br>    “去吧。”電話那頭頓了頓，加了句︰“注意安全。”<br><br>    施清海掛斷電話，將煙頭碾熄，背上專業的清潔公司標準箱，吹著口哨，低頭向街對面的民宅走去，眼角余光瞥向數百米外的那個燒烤攤子，忍不住笑了笑。<br><br>    能夠找到西門瑾曾經用來中轉的民宅，看上去或許並不是太困難，事實上難度卻相當大。施清海使用了自己注冊會計師、電腦高手、入室盜竊好手三方面的技能，才能花上一整夜時間，找到這里。<br><br>    還是那句老話，施公子是無所不能的，除了生孩子。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./697.html">Previous</a></div><div class="next"><a href="./699.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

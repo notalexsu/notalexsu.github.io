@@ -1,0 +1,50 @@
+<head><title>間客 第696頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="695.html">Previous</a></div><div class="next"><a href="697.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百二十五章 天涼好個秋<br><br>    傍晚紅日，小山清風，初秋時節，白色的MXT機甲安靜地平蹲其中，如同一尊正在思考什麼哲學問題的雕像。<br><br>    艙門依然開啟，許樂坐在合金艙壁邊緣，雙腳懸空于五米高的空中，就如同坐在學校三樓窗邊的調皮學生，他的身體很放松，很難注意到他的手中握著一根去除外膠皮的數據線，當然，更沒有辦法看到他的身體內有真氣正在快速流淌，從右臂處噴薄而出。<br><br>    商秋望著夕陽下他的背影，眼瞳不由震驚地微縮，作為一名工程師，她無法理解眼前的這幕畫面。<br><br>    地面的輕薄樹葉被初秋的風卷了起來，呼嘯著在山谷里盤旋飛舞，然而卷至MXT上方時，卻無法踫觸到許樂的身體，隔著約半米的距離便簌簌然扭曲墜落，不復再起。<br><br>    許樂的身軀正在不停地散發某種熱量，不，因為感受不到溫度，那應該是某種能量，這種能量讓那輪紅日自西方投射而來的光線都出現了異常扭曲。<br><br>    她感到有些頭痛，揉了揉額角，低頭重新觀察數據顯示光幕上的曲線，半晌後搖頭說道︰“有反應，單位截面電荷異常非常清楚，但對于信息傳遞沒有任何意義，只是一些雜波罷了。”<br><br>    許樂輕輕噓了口氣，松開了緊握的數據線裸頭，抬起左臂擦拭了一下額頭上的汗。<br><br>    “這是怎麼回事？”<br><br>    對于天才工程師而言，剛才看到的所有畫面，都會令商秋產生強烈的研究渴望，她盯著許樂的眼楮，很直接問道。<br><br>    “以後我會慢慢解釋給你听，放心吧，機會很多的，我還會做很多次這種實驗，我也不會放心讓別的技術人員替我做監控。”許樂笑著說道︰“至于這個實驗，是老爺子在費城的時候囑咐我做的。”<br><br>    只要還有繼續接觸研究的機會，商秋便感到非常滿意，于是她沒有再說什麼，開始整理今天的實驗數據，並且準備先設計好一個數學模型。<br><br>    許樂將數據線重新插回隱位卡口之中，側耳听著熟悉的自檢通過電流聲，臉上露出愉悅舒服的神情，用力地拍了兩下身旁平闊的合金板，山峰上的小白花應擊回蕩出清脆好听的金屬聲。<br><br>    因為某些事情，他最近的情緒一直有些低落，只有和機甲呆在一起，才會變得舒服很多。這大概是因為身下的MXT機甲，能夠為他提供近乎無敵般的強大信心支援——老爺子當年一台M37就能于萬軍之中殺死帝國皇帝，我雖不才，但有身下這台MXT，拼了這身肌肉，去首都特區殺死那位聯邦副總統，應該也不是什麼難事。<br><br>    事實上，如果不是老爺子臨終前在病榻旁的交待，如果不是總統先生當前所面臨的政治壓力，如果不是鄒部長的叮囑，許樂這時候可能正在S1繼續調查古鐘號的案子，而根本不在乎自己被放逐去了何處，被潑了多少身臭水。<br><br>    不，不止古鐘號的案子，還有臨海州體育館地下停車場的刺殺，還有木谷莊園里那個槍手，這些年他所經歷的事件，最終都隱隱指向了那片籠罩在聯邦上空的陰森烏雲。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./695.html">Previous</a></div><div class="next"><a href="./697.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

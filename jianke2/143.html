@@ -1,0 +1,50 @@
+<head><title>間客 第143頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="142.html">Previous</a></div><div class="next"><a href="144.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第八十一章 瘋狂的賽車<br><br>    “憲章局授予五級權限的時間只有一天……”<br><br>    高速行駛的聯邦調查局汽車內，一名中年官員眼光如鷹隼一般，盯著前方逃離的那輛汽車。這名官員按著自己的耳麥，認真听了一會兒，然後轉向自己手腕上的手表小光屏，對著下屬們發出命令︰<br><br>    “弄清楚你們的目標是誰！他是窮凶極惡的恐怖主義分子！他是一院畢業的優秀軍人！他比你們更了解調查局的抓捕流程！所以你們不要有任何自大的想法！”<br><br>    “入城之前，必須攔住前面那輛汽車，如果對方反抗，允許開火！”<br><br>    發布完命令之後，這名中年官員憤怒地罵道︰“憲章局那批狗日的，居然只給我一天的權限，還他媽的是五級，難道他們不知道前面姓施的那個小子多麼危險？”<br><br>    ……<br><br>    ……<br><br>    許樂面色有些蒼白，車窗外的景色以一種恐怖的速度倒退，高速公路的自動升溫除冰系統早已開啟，不然如果在冰雪之上，以這種速度前行，或許用不著後方那幾輛汽車追上，他們這輛黑色越野車便會自己車翻人亡。<br><br>    施清海的臉上沒有絲毫緊張的神色，除了眼眸里的些微憂慮，他輕輕舔著自己干枯的嘴唇，反而顯得有些興奮。<br><br>    “你會開車嗎？”他盯了一下後視光屏上，那些高速追來的汽車。<br><br>    “不會。”許樂回答的很快，沒有一絲猶豫，他知道在這樣緊張的時刻，任何遲疑都有可能造成嚴重的後果。<br><br>    “敢開嗎？”<br><br>    “敢。”<br><br>    這幾句問答很妙很荒誕，大概也只有許樂和施清海這兩個家伙才做得出來。許樂不知道施清海將汽車的控制權交給自己是什麼意思，但他可以想見，施清海一定是需要空出手來，對付後面越來越近的那幾輛黑色汽車。<br><br>    施清海拉動了一直懸在遮陽板旁邊的一根繩子，只听得嘩啦一聲巨響，黑色越野車後車廂里不知道什麼東西，全部被傾倒了出去。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./142.html">Previous</a></div><div class="next"><a href="./144.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>

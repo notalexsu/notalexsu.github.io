@@ -1,0 +1,50 @@
+<head><title>間客 第764頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="763.html">Previous</a></div><div class="next"><a href="765.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story">第一百九十三章 我的戰斗（四）<br><br>    細長的高跟鞋跟力度透過紅色的地毯，落在木質地板上，發出嗒嗒嗒嗒的聲音，這聲音就像是敲門。在木板下方的許樂緩緩睜開眼楮，醒了過來，眼楮看不到一絲光線，狹窄的空間里全是黑暗，隱隱能夠听到上方傳來的說話聲，于是他知道馬上就要開庭。<br><br>    他在黑暗狹窄的空間里靜靜躺了四天四夜，沒有進食，沒有飲水，如果知道南相美在莊園里的擔心，他一定會告訴她，這些天自己沒有吃，睡的也不怎麼好。<br><br>    在帝國醫院內突破的真實力量，迎來了最艱難的考驗，那些在肌肉雙縴維和身體內部緩慢游行，沒有任何障礙的力量或者說真氣，極為奇妙地幫助他減緩了心跳與呼吸的頻率，新陳代謝進入了一種類似冬眠或者沉睡的狀態。<br><br>    醒來後他身體每一處的肌肉緩緩放松，甚至那些本不能夠由大腦控制的平滑肌也是如此，呼吸與心跳開始進入正常的頻率。<br><br>    黑暗上方的腳步聲越來越密集，說話的聲音越來越大，許樂的眼楮眯的非常厲害，一片黑暗中，他卻通過軍事法庭角落里的監控投備，清楚地看著大廳里的一切，這種視角和身體完全脫離的感覺非常怪異，就像是在居高臨下俯視某些卑微的存在。<br><br>    許樂並不喜歡這種感覺，但他需要視線，事實上為了獲得法庭內部的監控畫面，他在黑暗中與聯邦中央電腦進行了無數場激烈爭執。<br><br>    H14改裝狙擊步槍在左肩，大火力朗格手槍在右手邊，他親手打造的軍刺在左小腿邊，伴著他微溫的身體四天四夜，已經不再寒氣逼人，而他要殺的目標在地板上邊。<br><br>    ……<br><br>    ……<br><br>    軍事法庭里肅靜異常，參加這次不公開審理案件旁听的人並不多，除了軍方和政府的代表之外，還象征意義地請來了西林鐘家的兩位代表，不過那兩個中年人很明顯對古鐘號爆炸沒有任何負面的看法，在當前的局勢下，依賴聯邦政府支持的他們，也不可能有任何看法。<br><br>    徐松子平靜地看著桌上的案卷，鄒部長被停職，時局發出了劇烈的變化，隸屬國防部法務部門的她和同事們，早已清楚今天的秘密審理只是走過場，但她堅持親自來做主控，並且穿上了自己最漂亮的綠色套裙。<br><br>    她起身向主控台走去，腳下漂亮的細長鞋跟踩在地板上，發出嗒嗒的響聲，像是敲門，又像是某種倒數的時間機器。<br><br>    </div><br><br><div class="out"><div class="prev"><a href="./763.html">Previous</a></div><div class="next"><a href="./765.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 5
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>
