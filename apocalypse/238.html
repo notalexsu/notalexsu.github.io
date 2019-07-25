@@ -1,0 +1,50 @@
+<head><title>諸界末日在線 第238頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="237.html">Previous</a></div><div class="next"><a href="239.html">Next</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story"><br>                                                    關於科技和科幻的閒話<br><br>    也許讀友們對腦波這個概念看的一頭霧水，覺得我瞎掰了一個東西出來。<br><br>    如果有讀友感興趣，可以搜索一下「腦波兵器」。<br><br>    這不是科幻，這是上個世紀就存在的東西。<br><br>    反正我覺得這個東西很恐怖。<br><br>    這方面的東西，我下意識的都不敢多寫。<br><br>    核武器摧毀世界，很容易對星球造成無法挽回的傷害。<br><br>    但腦波兵器針對的是人，不用害怕環境受損，威力巨大，被人稱為潘多拉的魔盒。<br><br>    誰也不知道未來會怎樣，不是嗎？</div><br><br><div class="out"><div class="prev"><a href="./237.html">Previous</a></div><div class="next"><a href="./239.html">Next</a></div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 6
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>
