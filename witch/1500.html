@@ -1,0 +1,50 @@
+<head><title>放開那個女巫 第1500頁</title><link rel="stylesheet" href="main.css"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"></head><body><div class="out"><div class="prev"><a href="1499.html">Previous</a></div></div><br><br><button id="bookmark" onclick="myFunction()"></button><div id="pages"><button onclick="bookmark(parseInt(window.location.pathname.split('/').pop()))">set</button><button onclick="bookmark('false')">get</button></div><br><div class="story"><br>完本感言<br><br>　　終於在三年後，女巫一文迎來完結，一時感慨良多。但不管如何，它總算是按我的想法，完成了最後的收束。<br><br>　　事實上，這個故事最先想好的，其實是結局——我甚至根據結局寫了三個開篇，分別是奇幻、末世、古代，最後選中了奇幻背景。這裡面當然有我對奇幻類型的喜愛，也有該背景更適合展開的緣故。<br><br>　　大綱在直面「神明」後便戛然而止，因為天海界的來歷早已定下，如果得先打完天海界再與「神明」對決，既無意義，又會顯得太拖沓，所以從一開始就沒打算讓故事往無限戰爭的方向走。<br><br>　　我也知道，故事中間的畫風突變，會讓一部分讀者無法理解，但如果缺了這塊拼圖，它就不會是一個完整的故事。當時猶豫了很久，但最終還是按照大綱寫了下來，就當時我個人的一點小小執念吧！（笑）畢竟是第一本書，不任性一下就再也沒機會了。<br><br>　　當然，故事中還有許多角色未能在結局中提及，但毫無疑問，他們都會在新世界中迎來全新的生活。這一點，就交給親們自由發揮，肆意暢想吧！<br><br>　　寫下完本感言的一刻，我看了眼後台，均定定格在43000。它之後或許還會再慢慢爬升很長一段時間，但那已是故事之外的事了。有這麼多人陪我走到完本，實在倍感榮幸，正是你們的支持，才讓我在日復一日的碼字中堅持下來。<br><br>　　二目小小愛你們！<br><br>　　撒花！<br><br>　　接下來我會休息一段時間，同時準備新書的資料和大綱，希望下一本書還能帶給你們一個新奇的世界和有趣的故事。大家可以關注我的微博與公眾號，關於新書的消息，我會第一時間發到上面。<br><br>　　最後，再次感謝所有讀者。<br><br>　　因為有你們，《放開那個女巫》才能獲得這樣的成績。<br><br>　　那麼，我們下一本書再見！ 本帖最後由 HarukanoHimitsu 於 2019-6-19 16:19 編輯 <br><br></div><br><br><div class="out"><div class="prev"><a href="./1499.html">Previous</a></div><div class="next">The End</div></div></body>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script><script>
+function myFunction() {
+	var x = document.getElementById("pages");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
+}
+
+function bookmark(setOrGet) {
+	AWS.config.update({region: "us-east-1"});
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:00c1990d-feb5-4503-b830-015338585bab'});
+	var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+	var payload = {
+		"setOrGet": setOrGet,
+		"user": 7
+	};
+	var pullParams = {
+		FunctionName : "bookmark",
+		InvocationType : "RequestResponse",
+		LogType : "None",
+		Payload : JSON.stringify(payload)
+	};
+	var pullResults;
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+		}
+		if (pullResults) {
+			var page = pullResults.page;
+			var link = "./" + page + ".html";
+			window.location.replace(link);
+		}
+		else {
+			alert("Bookmark set!");
+		}
+	});
+}
+
+// document.getElementById("button").onclick = function showPageNumber() {
+// 	var page = document.getElementById("inputPage").value;
+// 	if (!isNaN(page)) {
+// 		window.location = "./" + page + ".html";
+// 	}
+// }
+</script>
