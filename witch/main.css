@@ -31,8 +31,8 @@ input {
 }
 @media(max-width: 980px) {
   body {
-	font-size: 1.85em;
-	margin-left: 0.2em
+  font-size: 16.2pt;
+  padding: 5pt;
   }
   button {
 	font-size: 0.5em;
@@ -58,6 +58,7 @@ input {
   display: none;
 }
 .story {
+  margin: 0 auto;
   text-align: left;
 }
 a:link {
